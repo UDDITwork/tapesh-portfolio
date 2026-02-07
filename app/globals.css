@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
+
+:root {
+  --accent: #A8D8EA;
+  --text-heading: #666666;
+  --text-body: #999999;
+  --text-light: #AAAAAA;
+  --text-faint: #CCCCCC;
+  --border-light: #E0E0E0;
+  --wire-grey: #D0D0D0;
+  --bg: #FFFFFF;
+  --bg-warm: #FAFAFA;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none;
+}
+
+html {
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 300;
+  color: var(--text-body);
+  background: var(--bg);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--text-heading);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  z-index: 9999;
+  will-change: width;
+  transition: width 0.1s linear;
+}
+
+/* Custom cursor styles */
+.custom-cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--wire-grey);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor.hovering {
+  width: 20px;
+  height: 20px;
+  background: rgba(168, 216, 234, 0.15);
+  border-color: var(--accent);
+}
+
+/* Tracked-out section headings */
+.section-heading {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--text-light);
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+/* Card styles */
+.experience-card {
+  background: #FFFFFF;
+  border-left: 3px solid transparent;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-card .border-anim {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 0;
+  background: var(--accent);
+  transition: height 0.6s ease;
+}
+
+.experience-card.visible .border-anim {
+  height: 100%;
+}
+
+/* Hero name character */
+.hero-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Horizontal line animation */
+.line-draw {
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 1.2s ease;
+}
+
+.line-draw.visible {
+  width: 100%;
+}
+
+/* Timeline styles */
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 0;
+  background: var(--accent);
+  transition: height 1s ease;
+}
+
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.5s ease;
+}
+
+.timeline-dot.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Skill hover underline */
+.skill-item {
+  position: relative;
+  display: inline-block;
+  color: var(--text-body);
+  font-weight: 300;
+}
+
+.skill-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.4s ease;
+}
+
+.skill-item:hover::after {
+  width: 100%;
+}
+
+/* Contact link hover */
+.contact-link {
+  position: relative;
+  display: inline-block;
+}
+
+.contact-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #A8D8EA;
+  transition: width 0.4s ease;
+}
+
+.contact-link:hover::after {
+  width: 100%;
+}
+
+/* Page load overlay */
+.page-overlay {
+  position: fixed;
+  inset: 0;
+  background: #FFFFFF;
+  z-index: 100000;
+  will-change: opacity;
+}
+
+/* Smooth fade for 3D canvas */
+.three-canvas-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Scroll indicator pulse */
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.scroll-indicator {
+  animation: pulse-opacity 2.5s ease-in-out infinite;
+}
+
+/* Timeline dot pulse */
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(168, 216, 234, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(168, 216, 234, 0); }
+}
+
+.timeline-dot.visible {
+  animation: dot-pulse 2s ease-in-out infinite;
+}
