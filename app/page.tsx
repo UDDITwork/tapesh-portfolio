@@ -6,6 +6,7 @@ import About from '@/components/About'
 import Experience from '@/components/Experience'
 import Education from '@/components/Education'
 import Skills from '@/components/Skills'
+import DroneLab from '@/components/DroneLab'
 import Contact from '@/components/Contact'
 
 const Navbar = dynamic(() => import('@/components/Navbar'), { ssr: false })
@@ -26,6 +27,7 @@ export default function Home() {
         <Experience />
         <Education />
         <Skills />
+        <DroneLab />
         <Contact />
       </main>
     </>
